@@ -257,7 +257,6 @@ function validateEmail(email) {
 }
 
 var updatefrm = document.querySelector("#update-frm");
-var updatebtn = document.querySelector("#updatebtn");
 function fillup(updateid) {
 
     updatefrm.elements['date'].value = updateid.path[1].className;
@@ -267,30 +266,29 @@ function fillup(updateid) {
         updatefrm.elements['to'].value = snapshot.val().To;
         updatefrm.elements['description'].value = snapshot.val().Description;
     });
-    
-    deletebtn.addEventListener('click', function () {
-        show3(updateid.path[1].className);
-        firebase.database().ref('Year/' + `${updateid.path[1].className}/` + updateid.target.id).remove();
-        updatedata.style.display = "none";
-    });
-    
     show3(updateid.path[1].className);
 
 }
-function close(updateid){
-    updatebtn.addEventListener('click', function () {
-        show3(updateid.path[1].className);
+function dlbtn(){
+    
+        show3(cheating.path[1].className);
+        firebase.database().ref('Year/' + `${cheating.path[1].className}/` + cheating.target.id).remove();
+        updatedata.style.display = "none";
+
+    show3(cheating.path[1].className);
+}
+function upbtn(){
+    
+        show3(cheating.path[1].className);
             // document.getElementById(`${updateid.path[1].className}`).lastChild.innerHTML = " ";
-            console.log(updateid.target.id);
-            firebase.database().ref('Year/' + `${updateid.path[1].className}/` + `${updateid.target.id}`).update({
+            firebase.database().ref('Year/' + `${cheating.path[1].className}/` + `${cheating.target.id}`).update({
                 Title: updatefrm.elements['title'].value,
                 From: updatefrm.elements['from'].value,
                 To: updatefrm.elements['to'].value,
                 Description: updatefrm.elements['description'].value
             });
             updatedata.style.display = "none";
-            show3(updateid.path[1].className);
-        });
+            show3(cheating.path[1].className);
         
 }
 
@@ -360,6 +358,7 @@ htmlCalender.addEventListener("click", function (e) {
 });
 
 var updatedata = document.querySelector("#update-data");
+var cheating;
 viewdatacontent.addEventListener("click", function (e) {
 
 
@@ -379,7 +378,7 @@ viewdatacontent.addEventListener("click", function (e) {
         }
     }
     fillup(e);
-    close(e);
+    cheating=e;  
 });
 var member=document.querySelector("#member");
 
